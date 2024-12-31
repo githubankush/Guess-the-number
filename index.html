@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main {
+
+        border-radius: 10px;
+        padding: 1vw;
+        width: 35%;
+        height: 60vh;
+        box-shadow: 0 0 3px 3px gray;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        background-color: lightseagreen;
+        display: flex;
+
+    }
+
+    .top {
+        width: 100%;
+        height: 5vh;
+    }
+
+    .top img {
+        width: 30px;
+    }
+
+    .heading {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .guessField {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #guess {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+        font-size: 1vw;
+        font-weight: 800;
+
+    }
+
+    label {
+        font-size: 1.3vw;
+        font-weight: 600;
+    }
+
+    #subguess {
+        padding: 1vw;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(254, 236, 118);
+        font-weight: 800;
+    }
+
+    #subguess:hover {
+        background-color: rgb(90, 188, 172);
+    }
+
+    /* .starting-page button {
+        padding: 1vw;
+        border-radius: 10px;
+        border: none;
+        background-color: lightblue;
+        font-size: 1vw;
+        font-weight: 800;
+    } */
+</style>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="top">
+                <img src="reload.png" onclick="reLoad(this)" id="rel-img">
+            </div>
+            <div class="heading">
+                <h1 style="color: rgb(17, 0, 255);">Guess the number</h1>
+                <h3 style="font-weight: 300;">(Between 1 - 100)</h3>
+
+            </div>
+            <div class="alertField">
+                <h3 id="alert" style="color: rgb(212, 255, 0);"></h3>
+            </div>
+            <div class="guessField">
+                <label for="guess">Enter the Guess: </label>
+                <input type="text" id="guess">
+
+            </div>
+
+            <input type="submit" id="subguess">
+
+
+        </div>
+        <!-- <div class="starting-page">
+            <div class="container">
+
+                <button onclick="start(this)">Start</button>
+
+            </div>
+        </div> -->
+    </div>
+    <script>
+
+        // function start(elem) {
+        //     document.querySelector('.main').style.display = "flex";
+        //     elem.style.display = "none";
+        // }
+        function reLoad(elem) {
+            elem.style.transform = "rotate(360deg)";
+            elem.style.transition = "0.6s";
+            elem.style.overflow = "hidden";
+            setTimeout(() => {
+
+                window.location.reload();
+            }, 100);
+
+
+        }
+        let rn = Math.floor(Math.random() * 100);
+        let guessCount = 1;
+
+        // document.getElementById('alert').innerHTML = rn;
+        document.getElementById('subguess').onclick = function () {
+            //Number guessed by user
+            let guess = document.querySelector('#guess').value;
+
+
+            if (rn == guess) {
+                document.getElementById("alert").innerHTML = "You Won!!, You guessed in " + guessCount + " Attempt";
+            }
+            else if (rn > guess) {
+                document.getElementById("alert").innerHTML = "Higher Number Please!!";
+                guessCount++;
+            }
+            else {
+                document.getElementById("alert").innerHTML = "Lower Number Please!!";
+
+                guessCount++;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
